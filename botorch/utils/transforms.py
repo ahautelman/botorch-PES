@@ -107,7 +107,7 @@ def unnormalize(X: Tensor, bounds: Tensor) -> Tensor:
         >>> bounds = torch.stack([torch.zeros(3), 0.5 * torch.ones(3)])
         >>> X = unnormalize(X_normalized, bounds)
     """
-    return X * (bounds[1] - bounds[0]) + bounds[0]
+    return X.to(bounds.device) * (bounds[1] - bounds[0]) + bounds[0]
 
 
 def normalize_indices(indices: Optional[List[int]], d: int) -> Optional[List[int]]:
